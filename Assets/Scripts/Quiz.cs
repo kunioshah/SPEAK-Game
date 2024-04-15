@@ -95,12 +95,19 @@ public class Quiz : MonoBehaviour
             userCorrectAnswer++;
             userScore.text = "You are correct!";
             userScore.color = Color.green;
-            correctAnswerAudioSource.Play();
+            
+            if (GameVariables.PlaySounds)
+            {
+                correctAnswerAudioSource.Play();
+            }
         }
         else {
             userScore.text = "Sorry, Please try again!";
             userScore.color = Color.red;
-            wrongAnswerAudioSource.Play();
+            if (GameVariables.PlaySounds)
+            {
+                wrongAnswerAudioSource.Play();
+            }
         }
 
         if (round == quiz.questions.Count - 1)

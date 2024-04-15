@@ -22,8 +22,10 @@ public class ChooseCategory : MonoBehaviour
     [SerializeField] private Slider difficultySlider;
     [SerializeField] private TMPro.TMP_Text sliderValue;
     [SerializeField] private TMPro.TMP_InputField numberOfQuestions;
+    [SerializeField] private Toggle playSounds;
     private static string apiKey = APIKeys.OpenAIKey;
     private OpenAIApi openai = new OpenAIApi(apiKey);
+   
 
     private List<ChatMessage> messages = new List<ChatMessage>();
     //https://github.com/quentin-mckay/AI-Quiz-Generator?tab=readme-ov-file
@@ -45,6 +47,7 @@ public class ChooseCategory : MonoBehaviour
     }
     private void CloseSettings()
     {
+        GameVariables.PlaySounds = playSounds.isOn;
         settingsPanel.SetActive(false);
     }
 
