@@ -14,7 +14,7 @@ public class AWSManager : MonoBehaviour
 {
     private static AWSManager _instance;
 
-    private readonly string awsKey = File.ReadAllText(Application.streamingAssetsPath + "/APIKeys/AWSCognito.apikey");
+    private readonly string awsKey = APIKeys.AWSKey;
 
     private AWSManager(){}
     public static AWSManager Instance

@@ -110,7 +110,7 @@ public class Quiz : MonoBehaviour
         {
             GameVariables.UserScore = userCorrectAnswer;
             GameVariables.NumberOfQuestions = quiz.questions.Count;
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             SceneManager.LoadScene("End Game");
         }
     }   

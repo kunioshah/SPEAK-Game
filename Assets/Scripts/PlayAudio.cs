@@ -37,7 +37,7 @@ public class PlayAudio : MonoBehaviour
     [SerializeField] private AudioSource correctAnswerAudioSource;
     [SerializeField] private AudioSource wrongAnswerAudioSource;
     private int randomNumber = 1;
-    private static readonly string apiKey = File.ReadAllText(Application.streamingAssetsPath + "/APIKeys/OpenAI.apikey");
+    private static readonly string apiKey = APIKeys.OpenAIKey;
     private OpenAIApi openai = new OpenAIApi(apiKey);
     private List<ChatMessage> messages = new List<ChatMessage>();
     private string prompt = "You are a API. Answer with json list of strings without root node. Do not include any explanation";
@@ -249,6 +249,7 @@ public class PlayAudio : MonoBehaviour
     }
 
     //https://github.com/mapluisch/OpenAI-Text-To-Speech-for-Unity/blob/main/Assets/Scripts/Core/AudioPlayer.cs
+    //https://github.com/srcnalt/OpenAI-Unity
     private void LoadAndPlayAudio(string filePath)
     {
         #if UNITY_WEBGL

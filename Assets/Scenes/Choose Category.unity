@@ -3497,7 +3497,7 @@ MonoBehaviour:
   inputField: {fileID: 1639395425}
   button: {fileID: 630431838}
   useAI: 0
-  difficultyLevel: difficult
+  difficultyLevel: easy
   loading: {fileID: 14204374}
   settingsPanel: {fileID: 768093393}
   settingsClose: {fileID: 1065306646}

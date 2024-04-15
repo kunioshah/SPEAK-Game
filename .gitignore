@@ -75,3 +75,4 @@ crashlytics-build.properties
 .vscode/launch.json
 .vscode/settings.json
 *.apikey
+Assets/Scripts/APIKeys.cs
