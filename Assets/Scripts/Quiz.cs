@@ -8,6 +8,7 @@ using System.IO;
 using System;
 using UnityEngine.SceneManagement;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 public class Quiz : MonoBehaviour
 {
     [SerializeField] private Button buttonValue1;
@@ -31,6 +32,7 @@ public class Quiz : MonoBehaviour
     
     private int round = 0;
     private int correctAnswer = 0;
+    private int userCorrectAnswer = 0;
 
     private QuestionBank quiz;
     
@@ -77,7 +79,7 @@ public class Quiz : MonoBehaviour
                 break;
             }
         }
-        
+
         if (round == quiz.questions.Count - 1)
         {
             nextQuestion.gameObject.SetActive(false);
@@ -93,6 +95,7 @@ public class Quiz : MonoBehaviour
     {
         if (buttonNumber == correctAnswer)
         {
+            userCorrectAnswer++;
             userScore.text = "You are correct!";
             userScore.color = Color.green;
             correctAnswerAudioSource.Play();
@@ -103,6 +106,13 @@ public class Quiz : MonoBehaviour
             wrongAnswerAudioSource.Play();
         }
 
+        if (round == quiz.questions.Count - 1)
+        {
+            GameVariables.UserScore = userCorrectAnswer;
+            GameVariables.NumberOfQuestions = quiz.questions.Count;
+            Thread.Sleep(2000);
+            SceneManager.LoadScene("End Game");
+        }
     }   
 
     private void NextQuestion()

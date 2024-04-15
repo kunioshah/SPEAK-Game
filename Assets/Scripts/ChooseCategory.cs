@@ -14,13 +14,13 @@ public class ChooseCategory : MonoBehaviour
     [SerializeField] private TMPro.TMP_InputField inputField;
     [SerializeField] private Button button;
     [SerializeField] private bool useAI;
-    [SerializeField] int numberOfQuestions = 5;
     [SerializeField] string difficultyLevel = "easy";
     [SerializeField] private TMPro.TMP_Text loading;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private Button settingsClose;
     [SerializeField] private Slider difficultySlider;
     [SerializeField] private TMPro.TMP_Text sliderValue;
+    [SerializeField] private TMPro.TMP_InputField numberOfQuestions;
     private static readonly string apiKey = File.ReadAllText(Application.streamingAssetsPath + "/APIKeys/OpenAI.apikey");
     private OpenAIApi openai = new OpenAIApi(apiKey);
     private List<ChatMessage> messages = new List<ChatMessage>();
@@ -31,6 +31,7 @@ public class ChooseCategory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        numberOfQuestions.text = "5";
         button.onClick.AddListener(SubmitForm);
         settingsClose.onClick.AddListener(CloseSettings);
         //difficultySlider.onClick.AddListener(DifficultySliderClick);
@@ -89,7 +90,7 @@ public class ChooseCategory : MonoBehaviour
                 Role = "user",
                 Content = inputValue
             };
-            prompt = string.Format(prompt, numberOfQuestions, inputValue, difficultyLevel);
+            prompt = string.Format(prompt, numberOfQuestions.text, inputValue, difficultyLevel);
             Debug.Log("prompt=" + prompt);
             if (messages.Count == 0) newMessage.Content = prompt;
 
