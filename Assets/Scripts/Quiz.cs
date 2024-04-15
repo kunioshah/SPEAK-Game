@@ -25,9 +25,6 @@ public class Quiz : MonoBehaviour
     [SerializeField] private AudioSource correctAnswerAudioSource;
     [SerializeField] private AudioSource wrongAnswerAudioSource;
     [SerializeField] private Button nextQuestion;
-
-    private static readonly string apiKey = File.ReadAllText(Application.streamingAssetsPath + "/APIKeys/OpenAI.apikey");
-    private OpenAIApi openai = new OpenAIApi(apiKey);
     private List<ChatMessage> messages = new List<ChatMessage>();
     
     private int round = 0;
