@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Play Audio.unity
     guid: dd39b27b867794d49acba2b83280f7c5
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 1399c335b863242e295f6a8c2b46b5f3
+  - enabled: 1
+    path: Assets/Scenes/Quiz Game.unity
+    guid: 67c5717d3853a4a89b151fb4455296c6
   m_configObjects: {}

@@ -44,7 +44,7 @@ public class PlayAudio : MonoBehaviour
     private string filePath = "";
     private string speechUri = "https://api.openai.com/v1/audio/speech";
     private readonly string mp3Format = "mp3";
-
+    private readonly string wavFormat = "wav";
     private string outputFormat;
     private byte[] audioByteArray;
 

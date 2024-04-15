@@ -14,7 +14,7 @@ public class AWSManager : MonoBehaviour
 {
     private static AWSManager _instance;
 
-    private readonly string awsKey = File.ReadAllText(Application.streamingAssetsPath + "/APIKeys/AWSCongnito.apikey");
+    private readonly string awsKey = File.ReadAllText(Application.streamingAssetsPath + "/APIKeys/AWSCognito.apikey");
 
     private AWSManager(){}
     public static AWSManager Instance
@@ -49,7 +49,6 @@ public class AWSManager : MonoBehaviour
 
     private void Awake(){
         _instance = this;
-        awsKey = ((TextAsset)Resources.Load("AWSCongnito.apikey", typeof(TextAsset))).text;
         UnityInitializer.AttachToGameObject(this.gameObject);
         AWSConfigs.HttpClient = AWSConfigs.HttpClientOption.UnityWebRequest;
 
