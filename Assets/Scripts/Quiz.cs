@@ -30,6 +30,7 @@ public class Quiz : MonoBehaviour
     private int round = 0;
     private int correctAnswer = 0;
     private int userCorrectAnswer = 0;
+    private bool firstAnswer = true;
 
     private QuestionBank quiz;
     
@@ -92,7 +93,11 @@ public class Quiz : MonoBehaviour
     {
         if (buttonNumber == correctAnswer)
         {
-            userCorrectAnswer++;
+            if (firstAnswer)
+            {
+                userCorrectAnswer++;
+            }
+            
             userScore.text = "You are correct!";
             userScore.color = Color.green;
             
@@ -110,6 +115,8 @@ public class Quiz : MonoBehaviour
             }
         }
 
+        firstAnswer = false;
+
         if (round == quiz.questions.Count - 1)
         {
             GameVariables.UserScore = userCorrectAnswer;
@@ -124,6 +131,8 @@ public class Quiz : MonoBehaviour
         round++;
         if (round < quiz.questions.Count)
         {
+            firstAnswer = true;
+            userScore.text = "";
             LoadQuestion();
         }
     }
