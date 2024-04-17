@@ -37,6 +37,7 @@ public class ChooseCategory : MonoBehaviour
         settingsClose.onClick.AddListener(CloseSettings);
         loading.gameObject.SetActive(false);
         settingsPanel.SetActive(false);
+        difficultyLevel = GetDifficultyValue(GameVariables.DifficultyLevel);
     }
 
     public void OpenSettings()
@@ -49,24 +50,27 @@ public class ChooseCategory : MonoBehaviour
     private void CloseSettings()
     {
         GameVariables.PlaySounds = playSounds.isOn;
-        GameVariables.DifficultyLevel = (int)difficultySlider.value;
+        GameVariables.DifficultyLevel = difficultySlider.value;
+        difficultyLevel = GetDifficultyValue(GameVariables.DifficultyLevel);
         GameVariables.SettingsNumberOfQuestions = numberOfQuestions.text;
         settingsPanel.SetActive(false);
     }
 
     public void DifficultySliderClick()
     {
-        switch (difficultySlider.value)
+        sliderValue.text = GetDifficultyValue(difficultySlider.value);
+    }
+
+    private string GetDifficultyValue(float val)
+    {
+        switch (val)
         {
             case 1:
-                difficultyLevel = sliderValue.text = "Medium";
-                break;
+                return "Medium";
             case 2:
-                difficultyLevel = sliderValue.text = "Difficult";
-                break;
+                return "Difficult";
             default:
-                difficultyLevel = sliderValue.text = "Easy";
-                break;
+                return "Easy";
         }
     }
 
