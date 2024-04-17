@@ -97,9 +97,9 @@ public class Quiz : MonoBehaviour
             {
                 userCorrectAnswer++;
             }
-            
-            userScore.text = "You are correct!";
-            userScore.color = Color.green;
+            Debug.Log("Length=" + quiz.questions[round].explanation.Length);
+            string correctAnswer = "<color=green>You are correct!</color> <color=black>" + quiz.questions[round].explanation;     
+            userScore.text = quiz.questions[round].explanation.Length > 145 ? correctAnswer.Substring(0, 179)  + "..." : correctAnswer;
             
             if (GameVariables.PlaySounds)
             {

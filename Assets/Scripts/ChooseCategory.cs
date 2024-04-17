@@ -29,25 +29,28 @@ public class ChooseCategory : MonoBehaviour
 
     private List<ChatMessage> messages = new List<ChatMessage>();
     //https://github.com/quentin-mckay/AI-Quiz-Generator?tab=readme-ov-file
-    private string prompt =  "Give me {0} multiple choice questions about a random topic in {1}. The questions should be at an {2} level. Return your answer entirely in the form of a JSON object. The JSON object should have a key named \"questions\" which is an array of the questions. Each quiz question should include the choices, the answer, and a brief explanation of why the answer is correct. Don't include anything other than the JSON. The JSON properties of each question should be \"query\" (which is the question), \"choices\", \"answer\", and \"explanation\". The choices shouldn't have any ordinal value like A, B, C, D or a number like 1, 2, 3, 4. Please make sure the correct answer is random. Make sure one answer includes the word panda. Do not include any explanation.";
+    private string prompt =  "Give me {0} multiple choice questions about a random topic in {1}. The questions should be at a {2} level. Return your answer entirely in the form of a JSON object. The JSON object should have a key named \"questions\" which is an array of the questions. Each quiz question should include the choices, the answer, and a brief explanation of why the answer is correct. Don't include anything other than the JSON. The JSON properties of each question should be \"query\" (which is the question), \"choices\", \"answer\", and \"explanation\". The choices shouldn't have any ordinal value like A, B, C, D or a number like 1, 2, 3, 4. Please make sure the correct answer is random. Make sure one answer includes the word panda. Do not include any explanation.";
    
     void Start()
     {
-        numberOfQuestions.text = "5";
         button.onClick.AddListener(SubmitForm);
         settingsClose.onClick.AddListener(CloseSettings);
-        //difficultySlider.onClick.AddListener(DifficultySliderClick);
         loading.gameObject.SetActive(false);
         settingsPanel.SetActive(false);
     }
 
     public void OpenSettings()
     {
+        difficultySlider.value = GameVariables.DifficultyLevel;
+        playSounds.isOn = GameVariables.PlaySounds;
+        numberOfQuestions.text = GameVariables.SettingsNumberOfQuestions;
         settingsPanel.SetActive(true);
     }
     private void CloseSettings()
     {
         GameVariables.PlaySounds = playSounds.isOn;
+        GameVariables.DifficultyLevel = (int)difficultySlider.value;
+        GameVariables.SettingsNumberOfQuestions = numberOfQuestions.text;
         settingsPanel.SetActive(false);
     }
 
@@ -93,7 +96,7 @@ public class ChooseCategory : MonoBehaviour
                 Role = "user",
                 Content = inputValue
             };
-            prompt = string.Format(prompt, numberOfQuestions.text, inputValue, difficultyLevel);
+            prompt = string.Format(prompt, GameVariables.SettingsNumberOfQuestions, inputValue, difficultyLevel);
             Debug.Log("prompt=" + prompt);
             if (messages.Count == 0) newMessage.Content = prompt;
 
