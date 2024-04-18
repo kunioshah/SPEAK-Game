@@ -22,6 +22,7 @@ public class Quiz : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text value3;
     [SerializeField] private TMPro.TMP_Text value4;
     [SerializeField] private TMPro.TMP_Text userScore;
+    [SerializeField] private TMPro.TMP_Text next;
     [SerializeField] private AudioSource correctAnswerAudioSource;
     [SerializeField] private AudioSource wrongAnswerAudioSource;
     [SerializeField] private Button nextQuestion;
@@ -80,7 +81,7 @@ public class Quiz : MonoBehaviour
 
         if (round == quiz.questions.Count - 1)
         {
-            nextQuestion.gameObject.SetActive(false);
+            next.text = "Next";
         }
     }
 
@@ -121,8 +122,6 @@ public class Quiz : MonoBehaviour
         {
             GameVariables.UserScore = userCorrectAnswer;
             GameVariables.NumberOfQuestions = quiz.questions.Count;
-            Thread.Sleep(1000);
-            SceneManager.LoadScene("End Game");
         }
     }   
 
@@ -134,6 +133,10 @@ public class Quiz : MonoBehaviour
             firstAnswer = true;
             userScore.text = "";
             LoadQuestion();
+        }
+        else
+        {
+            SceneManager.LoadScene("End Game");
         }
     }
 }
