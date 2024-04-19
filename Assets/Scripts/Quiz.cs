@@ -1,14 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Newtonsoft.Json;
-using OpenAI;
-using System.Collections.Generic;
-
-using System.IO;
-using System;
 using UnityEngine.SceneManagement;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading;
+
 public class Quiz : MonoBehaviour
 {
     [SerializeField] private Button buttonValue1;
@@ -26,7 +19,6 @@ public class Quiz : MonoBehaviour
     [SerializeField] private AudioSource correctAnswerAudioSource;
     [SerializeField] private AudioSource wrongAnswerAudioSource;
     [SerializeField] private Button nextQuestion;
-    private List<ChatMessage> messages = new List<ChatMessage>();
     
     private int round = 0;
     private int correctAnswer = 0;

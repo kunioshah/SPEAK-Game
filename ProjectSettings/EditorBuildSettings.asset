@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/End Game.unity
     guid: 60271f459334a40cca6fa6f9d41f3d05
+  - enabled: 1
+    path: Assets/Scenes/Fill Blanks Game.unity
+    guid: a864361ffca9a4cbf95302d5feb93e4e
   m_configObjects: {}

@@ -12,12 +12,13 @@ using System;
 public class EndGame : MonoBehaviour
 {
     [SerializeField] private Button playAgain;
+    [SerializeField] private Button playFillBlanks;
     [SerializeField] private TMPro.TMP_Text userScore;
 
     void Start()
     {
         playAgain.onClick.AddListener(PlayAgain);
-
+        playFillBlanks.onClick.AddListener(PlayFillBlanks);
         DisplayUserScore();
     }
 
@@ -46,6 +47,12 @@ public class EndGame : MonoBehaviour
 
     private void PlayAgain()
     {
+        SceneManager.LoadScene("Choose Category");
+    }
+
+    private void PlayFillBlanks()
+    {
+        GameVariables.GameType = GameTypes.FillBlanks;
         SceneManager.LoadScene("Choose Category");
     }
 }
