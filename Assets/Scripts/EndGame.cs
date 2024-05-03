@@ -47,6 +47,7 @@ public class EndGame : MonoBehaviour
 
     private void PlayAgain()
     {
+        GameVariables.GameType = GameTypes.Quiz;
         SceneManager.LoadScene("Choose Category");
     }
 

@@ -27,10 +27,8 @@ public class ChooseCategory : MonoBehaviour
     private OpenAIApi openai = new OpenAIApi(apiKey);
    
 
-    private List<ChatMessage> messages = new List<ChatMessage>();
-    //https://github.com/quentin-mckay/AI-Quiz-Generator?tab=readme-ov-file
+    private List<ChatMessage> messages = new List<ChatMessage>(); 
     private static string quizPrompt =  "Give me {0} multiple choice questions about a random topic on {1}. The questions should be at a {2} level. Return your answer entirely in the form of a JSON object. The JSON object should have a key named \"questions\" which is an array of the questions. Each quiz question should include the choices, the answer, and a brief explanation of why the answer is correct. Don't include anything other than the JSON. The JSON properties of each question should be \"query\" (which is the question), \"choices\", \"answer\", and \"explanation\". The choices shouldn't have any ordinal value like A, B, C, D or a number like 1, 2, 3, 4. Please make sure the correct answer is random. Do not include any explanation.";
-   // private static string fillintheblanksPrompt = "Give me {0} fill in the blank format sentences about a random topic on {1}. The sentences should be at a {2} level.  Return your answer entirely in the form of a JSON object. Each sentence should include the choices and the answer. The JSON properties of each question should be \"query\" (which is the sentence), \"choices\" and \"answer\" which is the blanks. Do not include any explanation.";
     private static string fillintheblanksPrompt = "Give me {0} fill in the blank format sentences about a random topic on {1}. The sentences should be at a {2} level. Each answer is one word Return your answer entirely in the form of a JSON object. The JSON properties of each sentence should be \"query\" (which is the sentence) and \"answer\" which is the blanks. Do not include any explanation.";
     private string prompt = quizPrompt;
     void Start()
@@ -110,7 +108,7 @@ public class ChooseCategory : MonoBehaviour
             if (messages.Count == 0) newMessage.Content = prompt;
 
             messages.Add(newMessage);
-
+            //https://github.com/quentin-mckay/AI-Quiz-Generator?tab=readme-ov-file
             // Complete the instruction
             var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
             {
