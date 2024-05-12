@@ -49,6 +49,11 @@ public class TwentyQuestions : MonoBehaviour
 
     private async Task CallOpenAiToGetValues(string content)
     {
+        if (round == 20)
+        {
+            questionLabel.text = "Sorry I couldn't get your quess in 20 questions!";
+            return;
+        }
         var newMessage = new ChatMessage()
         {
             Role = "user",
