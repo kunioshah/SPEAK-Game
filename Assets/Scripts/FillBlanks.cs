@@ -22,16 +22,15 @@ public class FillBlanks : MonoBehaviour
     [SerializeField] private AudioSource correctAnswerAudioSource;
     [SerializeField] private AudioSource wrongAnswerAudioSource;
     [SerializeField] private Button nextQuestion;
- 
+
     private int round = 0;
-    private int correctAnswer = 0;
     private int userCorrectAnswer = 0;
     private bool firstAnswer = true;
     private string gameAnswer = "";
     private string userAnswer = "";
 
     private FillInTheBlankBank fillInTheBlankBank;
-    
+
     void Start()
     {
         goBack.onClick.AddListener(GoBack);
@@ -77,7 +76,7 @@ public class FillBlanks : MonoBehaviour
 
     private void FormatAnswerText()
     {
-        answer.text = (userAnswer + " " + new string ('_', gameAnswer.Length - userAnswer.Length)).Replace("_", "_ ");;
+        answer.text = (userAnswer + " " + new string('_', gameAnswer.Length - userAnswer.Length)).Replace("_", "_ "); ;
     }
 
     private void CallOpenAiToGetValues()
@@ -134,7 +133,8 @@ public class FillBlanks : MonoBehaviour
                 correctAnswerAudioSource.Play();
             }
         }
-        else {
+        else
+        {
             userScore.text = "Sorry, Please try again!";
             userScore.color = Color.red;
             if (GameVariables.PlaySounds)
@@ -150,7 +150,7 @@ public class FillBlanks : MonoBehaviour
             GameVariables.UserScore = userCorrectAnswer;
             GameVariables.NumberOfQuestions = fillInTheBlankBank.sentences.Count;
         }
-    }   
+    }
 
     private void NextQuestion()
     {
