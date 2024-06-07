@@ -52,11 +52,11 @@ public class PlayAudio : MonoBehaviour
     void Start()
     {
         outputFormat = mp3Format;
-        #if UNITY_WEBGL
+#if UNITY_WEBGL
         {
             outputFormat = wavFormat;
         }
-        #endif
+#endif
 
         filePath = Path.Combine(Application.persistentDataPath, "audio." + outputFormat);
         playAudio.onClick.AddListener(delegate { LoadAndPlayAudio(filePath); });
@@ -86,7 +86,8 @@ public class PlayAudio : MonoBehaviour
             userScore.color = Color.green;
             correctAnswerAudioSource.Play();
         }
-        else {
+        else
+        {
             userScore.text = "Sorry, Please try again!";
             userScore.color = Color.red;
             wrongAnswerAudioSource.Play();
@@ -100,7 +101,8 @@ public class PlayAudio : MonoBehaviour
         string messageValue = null;
         string inputValue = GameVariables.CategroryName;
 
-        if (string.IsNullOrEmpty(inputValue)) {
+        if (string.IsNullOrEmpty(inputValue))
+        {
             Debug.Log("Category=" + inputValue);
             SceneManager.LoadScene("Choose Category");
             return;
@@ -122,7 +124,7 @@ public class PlayAudio : MonoBehaviour
             // Complete the instruction
             var completionResponse = await openai.CreateChatCompletion(new CreateChatCompletionRequest()
             {
-                Model = "gpt-3.5-turbo-0613",
+                Model = "gpt-3.5-turbo",
                 Messages = messages
             });
 
@@ -252,20 +254,20 @@ public class PlayAudio : MonoBehaviour
     //https://github.com/srcnalt/OpenAI-Unity
     private void LoadAndPlayAudio(string filePath)
     {
-        #if UNITY_WEBGL
-            Debug.Log("Playing WebGL");
-            CreateAudioClip(audioByteArray);
-        #else
+#if UNITY_WEBGL
+        Debug.Log("Playing WebGL");
+        CreateAudioClip(audioByteArray);
+#else
             StartCoroutine(LoadAndPlayAudioForNonWebGL(filePath));
-        #endif
-        
+#endif
+
         valuesContainer.SetActive(true);
     }
 
     private IEnumerator LoadAndPlayAudioForNonWebGL(string filePath)
     {
         using UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + filePath, AudioType.MPEG);
-            yield return www.SendWebRequest();
+        yield return www.SendWebRequest();
 
         if (www.result == UnityWebRequest.Result.Success)
         {
